@@ -1,5 +1,5 @@
 # Cyberint-crawler
-A custom web crawler
+A custom python web crawler
 
 ## Installation
 git clone https://github.com/nivcaspi/Cyberint-crawler.git
@@ -12,4 +12,4 @@ can be installed with apt-get and pip
 ## Usage
 cd Cyberint-crawler <br />
 python crawler.py
-
+Ctrl-C to stop crawling
