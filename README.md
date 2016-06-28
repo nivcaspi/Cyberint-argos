@@ -11,5 +11,5 @@ can be installed with apt-get and pip
 
 ## Usage
 cd Cyberint-crawler <br />
-python crawler.py
+python crawler.py <br />
 Ctrl-C to stop crawling
