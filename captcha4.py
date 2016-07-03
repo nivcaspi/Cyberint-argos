@@ -1,8 +1,12 @@
 from PIL import Image, ImageEnhance
+from pytesser.pytesser import image_to_string
+
 
 def captcha_to_string(filename):
+    # get captcha file and size
     img = Image.open(filename)
     nx, ny = img.size
+    # enhance image readability
     im2 = img.resize((int(nx*5), int(ny*5)), Image.BICUBIC)
     im2.save('temp.png')
     img = Image.open('temp.png')
@@ -26,19 +30,11 @@ def captcha_to_string(filename):
         for x in xrange(img.size[0]):
             if pixdata[x, y][2] > 0:
                 pixdata[x, y] = (255, 255, 255, 255)
-
-
+    # convert to .gif, resize and convert to .tif
     img.save("input-black.gif", "GIF")
-
-
     im_orig = Image.open('input-black.gif')
     big = im_orig.resize((116, 56), Image.NEAREST)
-
-    ext = ".tif"
-    big.save("input-NEAREST" + ext)
-
-
-    from pytesser.pytesser import *
-
+    big.save("input-NEAREST" + ".tif")
     image = Image.open('input-NEAREST.tif')
+    # use tesseract OCR engine
     return image_to_string(image)
